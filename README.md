@@ -1,0 +1,1 @@
+# future-living-2026
