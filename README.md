@@ -21,7 +21,6 @@ Existing components reused as-is:
 | Byline bar | `.meta` / `.share` | Author, dates, share icons |
 | Article + sticky lead form | `.main` / `.article` / `.form-card` | The whole body |
 | Lead paragraph | `.lead` | The opening line |
-| Key takeaways | `.takeaways` | The three headline findings |
 | Stat row | `.big-row` / `.big` / `.delta` | 2026 at a glance |
 | Stacked bar chart | `.fig` / `.stack` / `.stack-legend` | Confidence, global standing, policy |
 | Column chart | `.bars` / `.bar-labels` | Homeownership by edition |
@@ -46,7 +45,7 @@ Signed-off blocks:
 1. Hero
 2. Byline and share
 3. Article column (with the lead form sticky alongside):
-   lead → key takeaways → 2026 at a glance → the four findings, each with its chart,
+   lead → 2026 at a glance → the four findings, each with its chart,
    insight and CTA → more from the survey → the film → about the survey
 4. FAQ
 5. More from this report
