@@ -29,7 +29,6 @@ Existing components reused as-is:
 | Stat cards | `.more` / `.more-card` | More from the survey |
 | Video | `.video` | Click-to-load YouTube |
 | Methodology list | `.method` | About the survey |
-| Edition selector | `.years` / `.year` | 2026 / 2025 / 2024 in the form |
 | Footer | `.site-footer` | Footer |
 | Mobile download bar | `.mobile-bar` | Sticky CTA under 640px |
 
@@ -64,10 +63,11 @@ Replace these placeholders:
 | `[DD Month YYYY]`, `[YYYY-MM-DD]` | published / updated dates and JSON-LD |
 | `[X] min` | read time in the hero rail and under the film |
 | `[YOUTUBE VIDEO ID]`, `[m:ss]`, `[PT#M#S]`, `[VIDEO TRANSCRIPT URL]`, `[VIDEO THUMBNAIL URL]` | film section and JSON-LD |
-| `[2026 PDF URL]`, `[2025 PDF URL]`, `[2024 PDF URL]`, `[PDF URL]` | `PDFS` map in the script, and JSON-LD |
+| `[2026 PDF URL]`, `[PDF URL]` | the `PDF` constant in the script, and JSON-LD |
 | `[LEAD ENDPOINT]` | the commented-out `fetch` in the form submit handler |
 | `[HERO IMAGE URL]`, `[LOGO URL]` | Open Graph and JSON-LD |
 | `[ARTICLE URL]`, `[Author]`, `[date]` | the six cards in "Articles from this report" |
+| `[FUTURE LIVING 2024 URL]` | the 2024 card in "Previous editions & market reports" |
 
 The form validates, fires a `report_download` dataLayer event and shows the success state.
 Wire the `fetch` to the CRM before launch.
@@ -79,3 +79,5 @@ Wire the `fetch` to the CRM before launch.
 - There is a film section with a click-to-load YouTube embed. If there is no film for this
   edition, delete the `#film` section and its entry in the JSON-LD.
 - If a global-cities figure is available, it can be added as a ninth `.more-card`.
+- The form serves the 2026 PDF only. The hidden `report_year` field still posts to the CRM
+  so leads stay attributable to this edition.

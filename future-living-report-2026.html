@@ -319,10 +319,6 @@ h1,h2,h3{text-wrap:balance}
 .form-card h2{margin:0 0 6px;font-family:var(--serif);font-weight:400;font-size:clamp(26px,2.4vw,32px);line-height:1.1;letter-spacing:-.006em}
 .form-card .form-sub{margin:0 0 20px;font-size:15px;line-height:1.5;color:var(--muted)}
 .form-card form{display:flex;flex-direction:column;gap:16px}
-.years{display:flex;gap:8px;border:0;margin:0;padding:0}
-.years legend{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);padding:0 0 10px}
-.year{flex:1;height:46px;border:1px solid var(--field);background:#fff;color:var(--navy);font:600 15px var(--sans);cursor:pointer;border-radius:3px;transition:background .25s var(--ease),border-color .25s var(--ease),color .25s var(--ease)}
-.year[aria-pressed="true"]{background:var(--navy);border-color:var(--navy);color:#fff}
 .field{height:54px;width:100%;border:1px solid var(--field);border-radius:3px;padding:0 15px;font:16px var(--sans);color:var(--navy);background:#fff}
 .field::placeholder{color:#8E959B}
 select.field{appearance:none;background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='9' viewBox='0 0 14 9' fill='none' stroke='%231F343F' stroke-width='1.8'%3E%3Cpath d='M1 1l6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 16px center}
@@ -657,12 +653,6 @@ select.field{appearance:none;background-image:url("data:image/svg+xml;charset=ut
           <h2 id="form-title">Download the full Future Living Report 2026</h2>
           <p class="form-sub">Fill in the form and the PDF downloads straight away. We&rsquo;ll email you a copy too.</p>
           <input type="hidden" name="report_year" id="report-year" value="2026">
-          <fieldset class="years">
-            <legend>Choose an edition</legend>
-            <button type="button" class="year" data-year="2026" aria-pressed="true">2026</button>
-            <button type="button" class="year" data-year="2025" aria-pressed="false">2025</button>
-            <button type="button" class="year" data-year="2024" aria-pressed="false">2024</button>
-          </fieldset>
           <input class="field" type="text" id="lead-name" name="name" autocomplete="name" aria-label="Name" placeholder="Name" required>
           <input class="field" type="email" id="lead-email" name="email" autocomplete="email" aria-label="Email address" placeholder="Email Address" required>
           <div class="phone">
@@ -762,11 +752,11 @@ select.field{appearance:none;background-image:url("data:image/svg+xml;charset=ut
 
     <div id="panel-editions" role="tabpanel" aria-labelledby="tab-editions" class="rail-panel" hidden>
       <ul class="rail" id="rail-editions" tabindex="0" aria-label="Previous editions and market reports">
-        <li class="rail-card"><a href="#get-report" data-pick-year="2025">
+        <li class="rail-card"><a href="https://www.bhomes.com/en/blog/market-reports/future-living-report-2025">
           <span class="rail-img"><span class="rail-badge">Second edition</span><img src="https://images.unsplash.com/photo-1748373448914-1d7f882700e2?fm=jpg&amp;q=70&amp;auto=format&amp;fit=crop&amp;w=720&amp;h=495" alt="Burj Khalifa and Downtown Dubai from above" loading="lazy" width="720" height="495"></span>
           <span class="rail-txt"><span class="rail-tag">Future Living</span><span class="rail-title">Future Living Report 2025</span><span class="rail-meta">Resident survey, second edition</span></span>
         </a></li>
-        <li class="rail-card"><a href="#get-report" data-pick-year="2024">
+        <li class="rail-card"><a href="[FUTURE LIVING 2024 URL]">
           <span class="rail-img"><span class="rail-badge">First edition</span><img src="https://images.unsplash.com/photo-1743368691866-018360c36fad?fm=jpg&amp;q=70&amp;auto=format&amp;fit=crop&amp;w=720&amp;h=495" alt="Dubai skyline with Burj Al Arab and Burj Khalifa" loading="lazy" width="720" height="495"></span>
           <span class="rail-txt"><span class="rail-tag">Future Living</span><span class="rail-title">Future Living Report 2024</span><span class="rail-meta">Resident survey, first edition</span></span>
         </a></li>
@@ -821,24 +811,8 @@ select.field{appearance:none;background-image:url("data:image/svg+xml;charset=ut
 
 <script>
 (function () {
-  // PDF links per edition: replace with real file URLs
-  var PDFS = { "2026": "[2026 PDF URL]", "2025": "[2025 PDF URL]", "2024": "[2024 PDF URL]" };
-
-  /* ---------- Edition selector ---------- */
-  var yearInput = document.getElementById('report-year');
-  function setYear(y) {
-    if (!PDFS[y]) return;
-    yearInput.value = y;
-    document.querySelectorAll('.year').forEach(function (b) {
-      b.setAttribute('aria-pressed', String(b.dataset.year === y));
-    });
-  }
-  document.querySelectorAll('.year').forEach(function (b) {
-    b.addEventListener('click', function () { setYear(b.dataset.year); });
-  });
-  document.querySelectorAll('[data-pick-year]').forEach(function (a) {
-    a.addEventListener('click', function () { setYear(a.dataset.pickYear); });
-  });
+  // Replace with the real file URL
+  var PDF = "[2026 PDF URL]";
 
   /* ---------- Lead form ---------- */
   var form = document.getElementById('report-form');
@@ -852,13 +826,12 @@ select.field{appearance:none;background-image:url("data:image/svg+xml;charset=ut
     // TODO: send `data` to the CRM / lead endpoint
     // fetch('[LEAD ENDPOINT]', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) });
     if (window.dataLayer) window.dataLayer.push({ event: 'report_download', report_year: data.report_year, persona: data.persona });
-    var y = data.report_year;
     var link = document.getElementById('download-again');
-    link.href = PDFS[y]; link.setAttribute('download', '');
+    link.href = PDF; link.setAttribute('download', '');
     document.getElementById('form-view').hidden = true;
     document.getElementById('success-view').hidden = false;
     document.getElementById('success-title').focus();
-    if (PDFS[y].indexOf('[') !== 0) window.location.href = PDFS[y];
+    if (PDF.indexOf('[') !== 0) window.location.href = PDF;
   });
 
   /* ---------- Share ---------- */
