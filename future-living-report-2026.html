@@ -171,70 +171,49 @@
 
 <style>
 /* ===========================================================
-   Future Living Report 2026 — third edition landing page
-   Layout: a full-bleed editorial opener, a measured reading
-   column for the findings, and full-width bands (sand / navy)
-   that mark each change of register. Luxury comes from space,
-   hairlines and scale, not ornament.
+   Future Living Report 2026
+   Built from the betterhomes component set already in use:
+   site header, hero, byline bar, article + sticky lead form,
+   stat row, stacked-bar and column charts, insight note,
+   stat cards, video, methodology list, FAQ, carousel, footer.
+   No new components — only the type scale and palette are tuned.
    =========================================================== */
 :root{
-  /* Colour — betterhomes core, plus one champagne accent used only for rules and edition marks */
   --navy:#1F343F; --navy-deep:#16262E; --navy-ink:#0C171C;
   --sand:#EFEAE4; --sand-light:#F6F3EF; --paper:#FCFBF9;
   --coral:#F0807A; --coral-deep:#B8453C;
   --champagne:#C9AE87; --champagne-line:rgba(201,174,135,.34);
   --muted:#56646B; --body:#3E4E56; --line:#E3E1DD; --field:#B5B9BE;
-  /* Type */
   --serif:"Cormorant Garamond","Iowan Old Style",Garamond,Georgia,"Times New Roman",serif;
   --sans:"Jost","Avenir Next",Futura,system-ui,-apple-system,"Segoe UI",sans-serif;
-  /* Layout */
   --pad:clamp(20px,7vw,168px);
   --header-h:76px;
-  --measure:70ch;
   --ease:cubic-bezier(.22,.61,.24,1);
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{margin:0;font-family:var(--sans);color:var(--navy);background:var(--paper);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
-a{color:var(--navy)}
-a:hover{color:var(--coral-deep)}
+a{color:var(--navy)} a:hover{color:var(--coral-deep)}
 img{max-width:100%;display:block}
 :focus-visible{outline:3px solid var(--coral);outline-offset:3px}
 h1,h2,h3{text-wrap:balance}
 [hidden]{display:none!important}
-.skip{position:absolute;left:-9999px;top:0;z-index:100;background:var(--navy);color:#fff;padding:12px 18px;border-radius:0 0 6px 0}
+.skip{position:absolute;left:-9999px;top:0;z-index:100;background:var(--navy);color:#fff;padding:12px 18px}
 .skip:focus{left:0;color:#fff}
-
-/* ---------- Shared pieces ---------- */
 .eyebrow{margin:0;font-size:11.5px;font-weight:500;letter-spacing:.24em;text-transform:uppercase;color:var(--coral-deep)}
 .eyebrow.on-dark{color:var(--champagne)}
-.band{padding:clamp(64px,8vw,116px) var(--pad)}
-main section[id],main div[id]{scroll-margin-top:calc(var(--header-h) + 64px)}
-.band-head{display:flex;flex-direction:column;gap:14px;margin-bottom:clamp(36px,4vw,56px);max-width:760px}
-.band-head h2{margin:0;font-family:var(--serif);font-weight:300;font-size:clamp(34px,4vw,56px);line-height:1.05;letter-spacing:-.005em}
-.band-head p.sub{margin:0;font-size:18px;line-height:1.6;color:var(--muted);max-width:60ch}
-.rule{height:1px;background:var(--line);border:0;margin:0}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;white-space:nowrap;height:56px;padding:0 30px;border-radius:4px;font:600 16px/1 var(--sans);text-decoration:none;border:1px solid transparent;cursor:pointer;transition:background .25s var(--ease),color .25s var(--ease),border-color .25s var(--ease)}
 .btn-primary{background:var(--coral);color:var(--navy-deep)}
 .btn-primary:hover{background:#E36F68;color:var(--navy-deep)}
-.btn-line{border-color:rgba(255,255,255,.5);color:#fff;background:rgba(255,255,255,.06);backdrop-filter:blur(6px)}
-.btn-line:hover{background:rgba(255,255,255,.16);color:#fff;border-color:#fff}
-.btn-dark{background:var(--navy);color:#fff}
-.btn-dark:hover{background:var(--navy-deep);color:#fff}
-
-/* ---------- Reading progress ---------- */
-.progress{position:fixed;left:0;top:0;right:0;height:3px;z-index:60;background:transparent;pointer-events:none}
-.progress i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--champagne),var(--coral))}
+.btn-line{border-color:rgba(255,255,255,.5);color:#fff;background:rgba(255,255,255,.08);backdrop-filter:blur(6px)}
+.btn-line:hover{background:rgba(255,255,255,.18);color:#fff;border-color:#fff}
 
 /* ---------- Header ---------- */
-.site-header{position:sticky;top:0;z-index:40;background:var(--sand);height:var(--header-h);display:flex;align-items:center;gap:clamp(16px,3vw,56px);padding:0 clamp(20px,4vw,168px);transition:box-shadow .3s var(--ease),background .3s var(--ease)}
-.is-scrolled .site-header{box-shadow:0 1px 0 var(--line),0 10px 30px -22px rgba(12,23,28,.5)}
+.site-header{position:sticky;top:0;z-index:40;background:var(--sand);height:var(--header-h);display:flex;align-items:center;gap:clamp(16px,3vw,56px);padding:0 clamp(20px,4vw,168px)}
 .logo{font-family:var(--serif);font-weight:500;font-size:clamp(28px,2.6vw,37px);text-decoration:none;letter-spacing:-.2px;line-height:1}
 .main-nav{display:flex;gap:clamp(10px,1.1vw,17px);flex-grow:1;min-width:0;font-size:clamp(13px,.98vw,15px);font-weight:500}
 .main-nav a{text-decoration:none;white-space:nowrap}
 .main-nav a:hover{color:var(--coral-deep)}
-.header-cta{height:42px;padding:0 20px;font-size:14px;border-radius:4px;opacity:0;transform:translateY(-4px);pointer-events:none;transition:opacity .3s var(--ease),transform .3s var(--ease)}
-.is-scrolled .header-cta{opacity:1;transform:none;pointer-events:auto}
 .btn-enquire{background:var(--coral);color:var(--navy-deep);font-weight:600;font-size:15px;padding:12px 18px;border-radius:4px;text-decoration:none;white-space:nowrap}
 .btn-enquire:hover{color:var(--navy-deep);background:#E36F68}
 
@@ -244,7 +223,7 @@ main section[id],main div[id]{scroll-margin-top:calc(var(--header-h) + 64px)}
 .hero>*{position:relative;z-index:2}
 .hero>img{position:absolute;inset:0;z-index:0;width:100%;height:100%;object-fit:cover;object-position:50% 46%;transform:scale(1.04)}
 .breadcrumb{position:absolute;z-index:3;top:22px;left:var(--pad);right:var(--pad)}
-.breadcrumb ol{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:10px;font-size:14px;font-weight:400;color:rgba(255,255,255,.82)}
+.breadcrumb ol{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:10px;font-size:14px;color:rgba(255,255,255,.82)}
 .breadcrumb li+li::before{content:"/";margin-right:10px;color:rgba(255,255,255,.45)}
 .breadcrumb a{color:rgba(255,255,255,.82);text-decoration:none}
 .breadcrumb a:hover{color:#fff}
@@ -254,16 +233,16 @@ main section[id],main div[id]{scroll-margin-top:calc(var(--header-h) + 64px)}
 .hero-kicker .ed{display:inline-flex;align-items:center;height:30px;padding:0 12px;border:1px solid var(--champagne-line);border-radius:999px;background:rgba(8,16,20,.45);font-family:var(--serif);font-weight:500;font-size:15px;letter-spacing:.08em;color:var(--champagne)}
 .hero h1{margin:0;font-family:var(--serif);font-weight:300;font-size:clamp(52px,8.6vw,122px);line-height:.92;letter-spacing:-.01em;max-width:14ch}
 .hero h1 em{font-style:normal;font-weight:400;color:#fff}
-.hero-deck{margin:0;font-size:clamp(18px,1.6vw,23px);line-height:1.5;font-weight:400;max-width:46ch;color:rgba(255,255,255,.92)}
+.hero-deck{margin:0;font-size:clamp(18px,1.6vw,23px);line-height:1.5;max-width:46ch;color:rgba(255,255,255,.92)}
 .hero-cta{display:flex;gap:14px;flex-wrap:wrap;margin-top:6px}
 .hero-rail{list-style:none;margin:0;padding:22px var(--pad) 26px;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:20px 28px;border-top:1px solid rgba(255,255,255,.18);background:rgba(10,20,25,.42);backdrop-filter:blur(10px)}
 .hero-rail li{display:flex;flex-direction:column;gap:5px;min-width:0}
 .hero-rail span{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.6)}
-.hero-rail b{font-family:var(--serif);font-weight:400;font-size:clamp(20px,1.65vw,26px);line-height:1.2;letter-spacing:0}
+.hero-rail b{font-family:var(--serif);font-weight:400;font-size:clamp(20px,1.65vw,26px);line-height:1.2}
 
 /* ---------- Byline / share ---------- */
-.meta-bar{padding:0 var(--pad);background:var(--paper)}
-.meta-inner{display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;padding:20px 0;border-bottom:var(--rule,1px solid var(--line));font-size:15px;color:var(--muted)}
+.meta{padding:0 var(--pad)}
+.meta-inner{display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;padding:20px 0;border-bottom:1px solid var(--line);font-size:15px;color:var(--muted)}
 .meta-inner p{margin:0}
 .share{display:flex;align-items:center;gap:8px}
 .share>span{font-size:12px;letter-spacing:.18em;text-transform:uppercase;margin-right:4px}
@@ -271,141 +250,82 @@ main section[id],main div[id]{scroll-margin-top:calc(var(--header-h) + 64px)}
 .share a:hover,.share button:hover{background:var(--sand);border-color:var(--navy)}
 .copied{font-size:13px;color:var(--coral-deep)}
 
-/* ---------- Opening: lead + three takeaways ---------- */
-.opening{padding:clamp(56px,7vw,104px) var(--pad) clamp(48px,6vw,88px);display:flex;flex-direction:column;gap:clamp(40px,5vw,64px)}
-.opening-top{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.45fr);gap:clamp(28px,5vw,80px);align-items:start}
-.series-note{display:flex;flex-direction:column;gap:12px;padding-top:6px}
-.series-cover{display:inline-flex;flex-direction:column;gap:16px;align-items:flex-start;text-decoration:none;margin:4px 0 2px}
-.series-cover .cover{transition:transform .5s var(--ease),box-shadow .5s var(--ease)}
-.series-cover:hover .cover{transform:translateY(-6px);box-shadow:26px 34px 70px -30px rgba(12,23,28,.65)}
-.series-link{display:inline-flex;align-items:center;gap:9px;font-size:14px;font-weight:500;letter-spacing:.02em;color:var(--navy);border-bottom:1px solid var(--coral);padding-bottom:3px}
-.series-link span{transition:transform .25s var(--ease)}
-.series-cover:hover .series-link span{transform:translateX(4px)}
-.series-note p:not(.eyebrow):not(.series-no){margin:0;font-size:15px;line-height:1.6;color:var(--muted);max-width:30ch}
-.opening-text{display:flex;flex-direction:column;gap:clamp(22px,2.2vw,30px)}
-.lead{margin:0;font-family:var(--serif);font-weight:300;font-size:clamp(32px,4.2vw,58px);line-height:1.08;letter-spacing:-.008em;max-width:19ch}
-.lead-stat{display:flex;align-items:baseline;gap:16px;margin:0;padding-top:clamp(18px,2vw,26px);border-top:1px solid var(--line);max-width:34ch}
-.lead-stat b{font-family:var(--serif);font-weight:300;font-size:clamp(42px,4.2vw,62px);line-height:.88;letter-spacing:-.02em;color:var(--navy);font-variant-numeric:tabular-nums}
-.lead-stat span{font-size:15px;line-height:1.5;color:var(--muted);max-width:21ch}
-.lead-sub{margin:0;font-size:clamp(16px,1.25vw,18px);line-height:1.65;color:var(--body);max-width:56ch}
-.takeaways{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(24px,3vw,44px)}
-.takeaway{display:flex;flex-direction:column;gap:12px;padding-top:20px;border-top:2px solid var(--navy);min-width:0}
-.takeaway h3{margin:0;font-family:var(--serif);font-weight:400;font-size:clamp(23px,2vw,29px);line-height:1.15;letter-spacing:0}
-.takeaway p{margin:0;font-size:16px;line-height:1.6;color:var(--body)}
+/* ---------- Article + sticky lead form ---------- */
+.main{display:flex;gap:clamp(32px,5vw,72px);align-items:flex-start;padding:clamp(48px,6vw,72px) var(--pad) clamp(56px,7vw,88px)}
+.article{flex:1;max-width:720px;min-width:0;display:flex;flex-direction:column;gap:clamp(44px,5vw,64px)}
+.article section{display:flex;flex-direction:column;gap:18px;scroll-margin-top:calc(var(--header-h) + 20px)}
+.article h2{margin:0;font-family:var(--serif);font-weight:300;font-size:clamp(30px,3.4vw,44px);line-height:1.06;letter-spacing:-.006em}
+.lead{margin:0;font-family:var(--serif);font-weight:300;font-size:clamp(24px,2.6vw,34px);line-height:1.22;letter-spacing:-.006em}
+.lead strong{font-weight:500}
+.standfirst{margin:0;font-size:clamp(17px,1.4vw,19px);line-height:1.62;color:var(--body)}
+.takeaways{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:0}
+.takeaways li{padding:18px 0;border-top:1px solid var(--line);font-size:17px;line-height:1.55;color:var(--body)}
+.takeaways li:last-child{border-bottom:1px solid var(--line)}
+.takeaways strong{display:block;font-family:var(--serif);font-weight:400;font-size:22px;line-height:1.2;color:var(--navy);margin-bottom:6px}
 
-/* ---------- At a glance ---------- */
-.glance{background:var(--navy);color:#fff}
-.glance .band-head h2{color:#fff}
-.glance .band-head p.sub{color:rgba(255,255,255,.7)}
-.glance-grid{margin:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0}
-.glance-grid .cell{border-top:1px solid var(--champagne-line);padding:26px 28px 32px 0;display:flex;flex-direction:column;gap:10px;min-width:0}
-.glance-grid dt{margin:0}
-.glance-grid dd{margin:0;display:flex;flex-direction:column;gap:8px}
-.gnum{font-family:var(--serif);font-weight:300;font-size:clamp(58px,6.2vw,90px);line-height:.9;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
-.gtext{font-size:16px;line-height:1.5;color:rgba(255,255,255,.78);max-width:34ch}
-.delta{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600;letter-spacing:.02em}
-.delta.down{color:#F2A09A} .delta.up{color:#8FD6B4} .delta.flat{color:rgba(255,255,255,.55)}
+/* Stat row */
+.big-row{margin:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:30px 32px}
+.big{border-top:1px solid var(--navy);padding-top:14px;display:flex;flex-direction:column;gap:8px;min-width:0}
+.big dt{margin:0}
+.big b{font-family:var(--serif);font-weight:300;font-size:clamp(44px,4.6vw,60px);line-height:.92;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.big dd{margin:0;display:flex;flex-direction:column;gap:7px}
+.big dd span{font-size:15px;line-height:1.45;color:var(--body)}
+.delta{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600}
+.delta.down{color:var(--coral-deep)} .delta.up{color:#1E6B4A} .delta.flat{color:var(--muted)}
 
-/* ---------- Chapter nav ---------- */
-.chapter-nav{position:sticky;top:var(--header-h);z-index:30;background:rgba(252,251,249,.94);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);display:flex;align-items:center;gap:20px;padding:0 var(--pad)}
-.chapter-nav ul{list-style:none;margin:0;padding:0;display:flex;gap:28px;overflow-x:auto;flex:1;scrollbar-width:none}
-.chapter-nav ul::-webkit-scrollbar{display:none}
-.chapter-nav a{display:block;padding:18px 0;font-size:14px;font-weight:500;letter-spacing:.01em;text-decoration:none;color:var(--muted);white-space:nowrap;border-bottom:2px solid transparent;transition:color .25s var(--ease),border-color .25s var(--ease)}
-.chapter-nav a:hover{color:var(--navy)}
-.chapter-nav a.active{color:var(--navy);border-bottom-color:var(--coral)}
-.nav-cta{font-size:14px;font-weight:600;text-decoration:none;white-space:nowrap;color:var(--coral-deep);border-bottom:1px solid currentColor;padding-bottom:2px}
-
-/* ---------- Chapters ---------- */
-.findings{padding:clamp(56px,7vw,104px) var(--pad) clamp(40px,5vw,72px);display:flex;flex-direction:column;gap:clamp(64px,8vw,120px)}
-.chapter{display:grid;grid-template-columns:200px minmax(0,1fr);gap:clamp(24px,4vw,64px);align-items:start}
-.chapter-mark{display:flex;flex-direction:column;gap:8px;position:sticky;top:calc(var(--header-h) + 90px)}
-.chapter-mark .num{font-family:var(--serif);font-weight:300;font-size:clamp(44px,4.6vw,68px);line-height:.9;letter-spacing:-.02em;color:var(--champagne)}
-.chapter-mark .label{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
-.chapter-body{display:flex;flex-direction:column;gap:24px;max-width:780px;min-width:0}
-.chapter-body h2{margin:0;font-family:var(--serif);font-weight:300;font-size:clamp(32px,3.9vw,52px);line-height:1.04;letter-spacing:-.006em}
-.standfirst{margin:0;font-size:clamp(18px,1.5vw,21px);line-height:1.6;color:var(--body);max-width:62ch}
-.fig{margin:0;display:flex;flex-direction:column;gap:20px;padding:clamp(24px,3vw,36px);background:var(--sand-light);border-radius:2px}
-.chart-title{margin:0;font-size:17px;font-weight:600;line-height:1.35;letter-spacing:.01em}
-.fig figcaption{margin:0;font-size:13px;line-height:1.55;color:var(--muted);padding-top:4px;border-top:1px solid var(--line)}
-.stack{display:flex;height:58px;overflow:hidden;font-size:15px;font-weight:600;border-radius:2px}
-.stack div{display:flex;align-items:center;justify-content:center;color:#fff;width:var(--w);white-space:nowrap;overflow:hidden}
-.js-reveal .stack div{width:0;transition:width 1.1s var(--ease)}
-.js-reveal .stack.in div{width:var(--w)}
+/* Charts */
+.fig{margin:0;display:flex;flex-direction:column;gap:18px}
+.chart-title{margin:0;font-size:17px;font-weight:600;line-height:1.35}
+.fig figcaption{margin:0;font-size:13px;line-height:1.55;color:var(--muted)}
+.stack{display:flex;height:56px;overflow:hidden;font-size:15px;font-weight:600;border-radius:2px}
+.stack div{display:flex;align-items:center;justify-content:center;color:#fff;white-space:nowrap;overflow:hidden}
 .stack-legend{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 24px;font-size:15px;line-height:1.45;color:var(--body)}
 .stack-legend.cols-3{grid-template-columns:repeat(3,minmax(0,1fr))}
 .sw{display:inline-block;width:12px;height:12px;border-radius:2px;margin-right:9px;vertical-align:-1px}
-.bars{display:flex;align-items:flex-end;gap:clamp(18px,4vw,44px);height:230px;border-bottom:1px solid var(--navy);padding:0 6px}
+.bars{display:flex;align-items:flex-end;gap:clamp(18px,4vw,40px);height:220px;border-bottom:1px solid var(--navy);padding:0 6px}
 .bar{flex:1;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;height:100%}
-.bar i{display:block;width:100%;max-width:92px;background:#C9D3D8;height:calc(var(--v) * 2%)}
+.bar i{display:block;width:100%;max-width:88px;background:#C9D3D8;height:calc(var(--v) * 2%)}
 .bar.now i{background:var(--navy)}
-.js-reveal .bar i{height:0;transition:height 1.1s var(--ease)}
-.js-reveal .bars.in .bar i{height:calc(var(--v) * 2%)}
-.bar b{font-family:var(--serif);font-weight:400;font-size:clamp(25px,2.5vw,34px);margin-bottom:10px;letter-spacing:0}
-.bar-labels{display:flex;gap:clamp(18px,4vw,44px);padding:12px 6px 0}
+.bar b{font-family:var(--serif);font-weight:400;font-size:clamp(24px,2.4vw,30px);margin-bottom:10px}
+.bar-labels{display:flex;gap:clamp(18px,4vw,40px);padding:12px 6px 0}
 .bar-labels span{flex:1;text-align:center;font-size:14px;font-weight:600;letter-spacing:.04em}
 .bar-labels span.now{color:var(--coral-deep)}
-.insight{margin:0;padding:4px 0 4px 24px;border-left:2px solid var(--champagne);font-size:18px;line-height:1.6;color:var(--body);max-width:62ch}
+.insight{margin:0;background:var(--sand-light);padding:20px 24px;font-size:17px;line-height:1.6;color:var(--body)}
 .insight strong{display:block;margin-bottom:6px;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--coral-deep);font-weight:600}
 .story-cta{align-self:flex-start;display:inline-flex;align-items:center;gap:10px;font-size:16px;font-weight:600;text-decoration:none;border-bottom:1px solid var(--coral);padding-bottom:4px}
 .story-cta span{transition:transform .25s var(--ease)}
 .story-cta:hover span{transform:translateX(5px)}
 
-/* ---------- More from the survey ---------- */
-.more-band{background:var(--sand-light)}
-.more{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line)}
-.more-card{background:var(--sand-light);padding:clamp(22px,2.2vw,30px);display:flex;flex-direction:column;gap:12px;min-width:0;transition:background .3s var(--ease)}
-.more-card:hover{background:#fff}
+/* Stat cards */
+.more{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.more-card{background:var(--sand-light);padding:22px;display:flex;flex-direction:column;gap:10px;min-width:0}
 .more-card svg{color:var(--coral-deep)}
-.more-card b{font-family:var(--serif);font-weight:300;font-size:clamp(42px,4.2vw,60px);line-height:.92;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.more-card b{font-family:var(--serif);font-weight:300;font-size:clamp(38px,3.8vw,48px);line-height:.95;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
 .more-card span{font-size:15px;line-height:1.5;color:var(--body)}
 
-/* ---------- Film ---------- */
-.film{background:var(--navy-deep);color:#fff}
-.film-inner{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.35fr);gap:clamp(28px,5vw,72px);align-items:center}
-.film h2{margin:0;font-family:var(--serif);font-weight:300;font-size:clamp(32px,3.7vw,48px);line-height:1.05;letter-spacing:-.006em}
-.film-copy{display:flex;flex-direction:column;gap:18px}
-.film-copy p:not(.eyebrow){margin:0;font-size:17px;line-height:1.6;color:rgba(255,255,255,.75)}
-.film-copy a{color:var(--champagne)}
-.video{position:relative;aspect-ratio:16/9;overflow:hidden;background:var(--navy) center/cover no-repeat;background-image:var(--poster,none);border-radius:2px}
-.video::before{content:"";position:absolute;inset:0;background:rgba(12,23,28,.4)}
-.video-play{position:absolute;inset:0;margin:auto;width:84px;height:84px;border:0;padding:0;background:none;cursor:pointer;border-radius:999px}
+/* Video */
+.video{position:relative;aspect-ratio:16/9;overflow:hidden;background:var(--navy) center/cover no-repeat;background-image:var(--poster,none)}
+.video::before{content:"";position:absolute;inset:0;background:rgba(12,23,28,.38)}
+.video-play{position:absolute;inset:0;margin:auto;width:76px;height:76px;border:0;padding:0;background:none;cursor:pointer;border-radius:999px}
 .video-play svg circle{transition:fill .25s var(--ease)}
 .video-play:hover svg circle{fill:var(--coral)}
-.video-length{position:absolute;right:14px;bottom:12px;padding:4px 10px;border-radius:2px;background:rgba(0,0,0,.6);color:#fff;font-size:13px}
+.video-length{position:absolute;right:14px;bottom:12px;padding:4px 10px;background:rgba(0,0,0,.6);color:#fff;font-size:13px}
 .video iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
 
-/* ---------- The product block ---------- */
-.product{background:var(--navy);color:#fff}
-.product-inner{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,420px);gap:clamp(36px,5vw,88px);align-items:start}
-.product-left{min-width:0;display:flex;flex-direction:column;gap:clamp(28px,3vw,40px)}
-.product-left h2{margin:0;font-family:var(--serif);font-weight:300;font-size:clamp(34px,4.1vw,58px);line-height:1.02;letter-spacing:-.006em;max-width:16ch}
-.product-top{display:grid;grid-template-columns:auto minmax(0,1fr);gap:clamp(24px,3vw,44px);align-items:start}
-.cover{width:clamp(180px,16vw,236px);aspect-ratio:3/4.1;color:#fff;container-type:inline-size;background:linear-gradient(155deg,#24404C 0%,#16262E 58%,#101E25 100%);border:1px solid var(--champagne-line);padding:clamp(15px,1.5vw,22px) clamp(14px,1.4vw,20px);display:flex;flex-direction:column;justify-content:space-between;box-shadow:24px 28px 60px -28px rgba(0,0,0,.85);position:relative;overflow:hidden}
-.cover::after{content:"";position:absolute;left:0;top:0;bottom:0;width:7px;background:linear-gradient(90deg,rgba(255,255,255,.14),rgba(255,255,255,0))}
-.cover p{margin:0}
-.cover>*{display:block}
-.cover .c-brand{font-family:var(--serif);font-weight:500;font-size:18px;font-size:10.2cqw;letter-spacing:-.2px;color:#fff}
-.cover .c-mid{display:flex!important;flex-direction:column;gap:6px;gap:3cqw}
-.cover .c-ed{font-size:10px;font-size:5.6cqw;letter-spacing:.2em;text-transform:uppercase;color:var(--champagne)}
-.cover .c-title{font-family:var(--serif);font-weight:400;font-size:clamp(21px,2vw,27px);font-size:15.5cqw;line-height:1;letter-spacing:-.005em;margin:0}
-.cover .c-year{font-family:var(--serif);font-weight:300;font-size:clamp(34px,3.4vw,46px);font-size:24cqw;line-height:1;letter-spacing:-.01em;color:var(--champagne)}
-.cover .c-foot{font-size:11px;font-size:5.6cqw;line-height:1.45;color:rgba(255,255,255,.6);border-top:1px solid var(--champagne-line);padding-top:10px;padding-top:4.5cqw}
-.inside{display:flex;flex-direction:column;gap:16px;min-width:0}
-.inside ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:0}
-.inside li{display:flex;gap:14px;align-items:flex-start;padding:13px 0;border-top:1px solid rgba(255,255,255,.14);font-size:15px;line-height:1.5;color:rgba(255,255,255,.82)}
-.inside li:last-child{border-bottom:1px solid rgba(255,255,255,.14)}
-.inside li svg{flex-shrink:0;color:var(--champagne);margin-top:2px}
-.product-terms{margin:0;display:flex;gap:10px;flex-wrap:wrap;align-items:center;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.62)}
-.product-terms i{font-style:normal;color:var(--champagne-line)}
+/* Methodology list */
+.method{margin:0;display:grid;grid-template-columns:minmax(140px,180px) minmax(0,1fr);font-size:16px;line-height:1.55}
+.method dt{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);padding:15px 0;border-top:1px solid var(--line)}
+.method dd{margin:0;padding:15px 0;border-top:1px solid var(--line);color:var(--navy)}
+.method-note{margin:16px 0 0;font-size:14px;line-height:1.6;color:var(--muted)}
 
-/* ---------- Form ---------- */
-.form-card{min-width:0;background:var(--paper);color:var(--navy);padding:clamp(26px,2.4vw,36px);border-radius:2px;box-shadow:0 30px 70px -40px rgba(0,0,0,.8)}
-.form-card h2{margin:0 0 6px;font-family:var(--serif);font-weight:400;font-size:clamp(27px,2.5vw,35px);line-height:1.1;letter-spacing:-.006em}
+/* Lead form */
+.form-card{width:420px;flex-shrink:0;position:sticky;top:calc(var(--header-h) + 20px);background:#fff;border:1px solid var(--line);padding:32px;box-shadow:0 2px 14px rgba(12,23,28,.07)}
+.form-card h2{margin:0 0 6px;font-family:var(--serif);font-weight:400;font-size:clamp(26px,2.4vw,32px);line-height:1.1;letter-spacing:-.006em}
 .form-card .form-sub{margin:0 0 20px;font-size:15px;line-height:1.5;color:var(--muted)}
 .form-card form{display:flex;flex-direction:column;gap:16px}
 .years{display:flex;gap:8px;border:0;margin:0;padding:0}
 .years legend{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);padding:0 0 10px}
-.year{flex:1;height:46px;border:1px solid var(--field);background:transparent;color:var(--navy);font:600 15px var(--sans);cursor:pointer;border-radius:3px;transition:background .25s var(--ease),border-color .25s var(--ease),color .25s var(--ease)}
+.year{flex:1;height:46px;border:1px solid var(--field);background:#fff;color:var(--navy);font:600 15px var(--sans);cursor:pointer;border-radius:3px;transition:background .25s var(--ease),border-color .25s var(--ease),color .25s var(--ease)}
 .year[aria-pressed="true"]{background:var(--navy);border-color:var(--navy);color:#fff}
 .field{height:54px;width:100%;border:1px solid var(--field);border-radius:3px;padding:0 15px;font:16px var(--sans);color:var(--navy);background:#fff}
 .field::placeholder{color:#8E959B}
@@ -426,7 +346,11 @@ select.field{appearance:none;background-image:url("data:image/svg+xml;charset=ut
 .success p{margin:0;font-size:16px;line-height:1.55;color:var(--muted)}
 .success a.text-link{font-size:15px;font-weight:600}
 
-/* ---------- FAQ ---------- */
+/* ---------- Full-width sections (FAQ, carousel) ---------- */
+.band{padding:clamp(56px,7vw,100px) var(--pad)}
+.band-head{display:flex;flex-direction:column;gap:14px;max-width:760px}
+.band-head h2{margin:0;font-family:var(--serif);font-weight:300;font-size:clamp(34px,4vw,54px);line-height:1.05;letter-spacing:-.005em}
+.band-head p.sub{margin:0;font-size:17px;line-height:1.6;color:var(--muted);max-width:52ch}
 .faq-grid{display:grid;grid-template-columns:minmax(0,320px) minmax(0,1fr);gap:clamp(28px,5vw,80px);align-items:start}
 .faq-list{border-top:1px solid var(--line)}
 .faq-list details{border-bottom:1px solid var(--line)}
@@ -436,24 +360,14 @@ select.field{appearance:none;background-image:url("data:image/svg+xml;charset=ut
 .faq-list details[open] summary::after{transform:translateY(-30%) rotate(225deg)}
 .faq-list p{margin:0 0 24px;font-size:16px;line-height:1.65;color:var(--body);max-width:68ch}
 
-/* ---------- Methodology ---------- */
-.method-band{background:var(--sand)}
-.method-grid{display:grid;grid-template-columns:minmax(0,320px) minmax(0,1fr);gap:clamp(28px,5vw,80px);align-items:start}
-.method{margin:0;display:grid;grid-template-columns:minmax(140px,180px) minmax(0,1fr);gap:0;font-size:16px;line-height:1.55}
-.method dt{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);padding:16px 0;border-top:1px solid #DCD6CE}
-.method dd{margin:0;padding:16px 0;border-top:1px solid #DCD6CE;color:var(--navy)}
-.method-note{margin:20px 0 0;font-size:14px;line-height:1.6;color:var(--muted);max-width:60ch}
-
-/* ---------- Closing rails (tabbed carousel) ---------- */
+/* Carousel */
 .index-band{background:var(--sand-light);--rail-gap:clamp(18px,2vw,28px)}
 .index-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px 40px;flex-wrap:wrap;margin-bottom:clamp(26px,3vw,42px)}
-.index-head .band-head{margin-bottom:0;gap:10px}
 .tabs{display:flex;gap:32px;flex-wrap:wrap;border-bottom:1px solid var(--line);margin-bottom:-1px}
 .tab{appearance:none;border:0;background:transparent;padding:10px 0;font:500 14px var(--sans);letter-spacing:.02em;color:var(--muted);cursor:pointer;border-bottom:2px solid transparent;white-space:nowrap;transition:color .25s var(--ease),border-color .25s var(--ease)}
 .tab:hover{color:var(--navy)}
 .tab[aria-selected="true"]{color:var(--navy);border-bottom-color:var(--coral)}
 .tab .count{margin-left:8px;font-size:11px;letter-spacing:.1em;color:var(--muted)}
-
 .rail-panel{display:flex;flex-direction:column;gap:clamp(20px,2.4vw,30px)}
 .rail{list-style:none;margin:0;padding:0;display:flex;gap:var(--rail-gap);overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;scrollbar-width:none}
 .rail::-webkit-scrollbar{display:none}
@@ -465,7 +379,7 @@ select.field{appearance:none;background-image:url("data:image/svg+xml;charset=ut
 .rail-badge{position:absolute;left:0;bottom:0;z-index:1;padding:8px 13px;background:rgba(12,23,28,.84);color:var(--champagne);font-size:10px;font-weight:500;letter-spacing:.22em;text-transform:uppercase}
 .rail-txt{display:flex;flex-direction:column;gap:7px;min-width:0}
 .rail-tag{font-size:10.5px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--coral-deep)}
-.rail-title{font-family:var(--serif);font-weight:400;font-size:clamp(20px,1.6vw,24px);line-height:1.18;letter-spacing:-.004em;color:var(--navy)}
+.rail-title{font-family:var(--serif);font-weight:400;font-size:clamp(20px,1.6vw,24px);line-height:1.18;color:var(--navy)}
 .rail-card a:hover .rail-title{text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:1px}
 .rail-meta{font-size:13px;color:var(--muted)}
 .rail-nav{display:flex;align-items:center;justify-content:space-between;gap:24px;border-top:1px solid var(--line);padding-top:18px}
@@ -479,52 +393,32 @@ select.field{appearance:none;background-image:url("data:image/svg+xml;charset=ut
 .rail-btn:disabled{opacity:.25;cursor:default}
 .index-foot{display:flex;gap:26px;flex-wrap:wrap;margin:clamp(22px,2.6vw,32px) 0 0;font-size:14px;font-weight:500}
 .index-foot a{text-decoration:none;border-bottom:1px solid var(--coral);padding-bottom:3px}
-@media (max-width:1200px){.rail-card{flex-basis:calc((100% - 2 * var(--rail-gap)) / 3)}}
-@media (max-width:900px){.rail-card{flex-basis:calc((100% - var(--rail-gap)) / 2)}}
-@media (max-width:620px){.rail-card{flex-basis:82%}.tabs{gap:22px}.tab{font-size:13px}}
 
-/* ---------- Footer ---------- */
-.site-footer{background:var(--navy-deep);color:#fff;padding:clamp(48px,5vw,72px) var(--pad);display:flex;justify-content:space-between;align-items:flex-start;gap:32px;flex-wrap:wrap}
+/* ---------- Footer + mobile bar ---------- */
+.site-footer{background:var(--navy-deep);color:#fff;padding:clamp(44px,5vw,64px) var(--pad);display:flex;justify-content:space-between;align-items:flex-start;gap:32px;flex-wrap:wrap}
 .site-footer .logo{color:#fff}
 .site-footer address{font-style:normal;font-size:15px;line-height:1.6;color:rgba(255,255,255,.6);margin-top:12px}
 .social{display:flex;gap:22px;flex-wrap:wrap;font-size:14px}
 .social a{color:rgba(255,255,255,.8);text-decoration:none}
 .social a:hover{color:var(--champagne)}
-
-/* ---------- Mobile download bar ---------- */
 .mobile-bar{display:none}
 
-/* ---------- Reveal ---------- */
-.js-reveal .reveal{opacity:0;transform:translateY(20px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
-.js-reveal .reveal.in{opacity:1;transform:none}
-
 /* ---------- Responsive ---------- */
-@media (max-width:1340px){
-  .main-nav{display:none}
-}
+@media (max-width:1340px){.main-nav{display:none}}
 @media (max-width:1200px){
   .hero-rail{grid-template-columns:repeat(3,minmax(0,1fr))}
-  .more{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .rail-card{flex-basis:calc((100% - 2 * var(--rail-gap)) / 3)}
 }
 @media (max-width:1024px){
-  .opening-top{grid-template-columns:1fr;gap:28px}
-  .product-inner{grid-template-columns:minmax(0,1fr)}
-  .film-inner{grid-template-columns:1fr}
-  .faq-grid,.method-grid{grid-template-columns:1fr}
-  .chapter{grid-template-columns:1fr;gap:16px}
-  .chapter-mark{position:static;flex-direction:row;align-items:baseline;gap:14px}
-  .chapter-mark .num{font-size:30px}
-  .glance-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .main{flex-direction:column}
+  .article{max-width:none;width:100%}
+  .form-card{width:100%;position:static}
+  .faq-grid{grid-template-columns:1fr}
 }
-@media (max-width:960px){
-  .takeaways{grid-template-columns:1fr}
-  .product-top{grid-template-columns:1fr}
-  .cover{width:clamp(170px,42vw,210px)}
-}
+@media (max-width:900px){.rail-card{flex-basis:calc((100% - var(--rail-gap)) / 2)}}
 @media (max-width:640px){
   :root{--header-h:64px}
   .site-header{gap:12px;justify-content:space-between}
-  .header-cta{display:none}
   .hero{min-height:88vh}
   .hero::after{background:linear-gradient(180deg,rgba(8,16,20,.62) 0%,rgba(8,16,20,.26) 22%,rgba(8,16,20,.42) 48%,rgba(8,16,20,.66) 72%,rgba(8,16,20,.9) 100%)}
   .breadcrumb{position:static;margin-bottom:auto;padding:14px var(--pad) 0}
@@ -532,29 +426,27 @@ select.field{appearance:none;background-image:url("data:image/svg+xml;charset=ut
   .hero-rail{grid-template-columns:repeat(2,minmax(0,1fr));padding-bottom:88px}
   .hero-cta{width:100%;flex-direction:column;align-items:stretch}
   .hero-cta .btn{width:100%}
-  .glance-grid{grid-template-columns:1fr}
-  .glance-grid .cell{padding-right:0}
+  .big-row{grid-template-columns:repeat(2,minmax(0,1fr))}
   .stack-legend,.stack-legend.cols-3{grid-template-columns:1fr}
   .more{grid-template-columns:1fr}
   .method{grid-template-columns:1fr}
-  .method dt{padding-bottom:0;border-bottom:0}
+  .method dt{padding-bottom:0}
   .method dd{border-top:0;padding-top:4px}
+  .form-card{padding:26px 20px}
+  .rail-card{flex-basis:82%}
+  .tabs{gap:22px}.tab{font-size:13px}
   .mobile-bar{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:50;padding:12px 16px calc(12px + env(safe-area-inset-bottom));background:var(--paper);box-shadow:0 -2px 24px rgba(12,23,28,.18)}
   .mobile-bar .btn-submit{width:100%}
   body{padding-bottom:84px}
 }
-@media (prefers-reduced-motion:reduce){
-  html{scroll-behavior:auto}
-  *{animation-duration:.001ms!important;transition-duration:.001ms!important}
-  .js-reveal .reveal{opacity:1;transform:none}
-}
-@media print{.site-header,.chapter-nav,.mobile-bar,.progress,.index-band,.form-card{display:none}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition-duration:.001ms!important}}
+@media print{.site-header,.mobile-bar,.index-band,.form-card{display:none}}
 </style>
 </head>
+
 <body>
 
 <a class="skip" href="#main">Skip to content</a>
-<div class="progress" aria-hidden="true"><i id="progress-bar"></i></div>
 
 <header class="site-header">
   <a class="logo" href="https://www.bhomes.com/en">betterhomes</a>
@@ -570,7 +462,6 @@ select.field{appearance:none;background-image:url("data:image/svg+xml;charset=ut
     <a href="https://www.bhomes.com/en/join-our-team">Careers</a>
     <a href="https://www.bhomes.com/en/our-story">About</a>
   </nav>
-  <a class="btn btn-dark header-cta" href="#get-report">Download the report</a>
   <a class="btn-enquire" href="https://www.bhomes.com/en/contact">Enquire now</a>
 </header>
 
@@ -610,7 +501,7 @@ select.field{appearance:none;background-image:url("data:image/svg+xml;charset=ut
   </section>
 
   <!-- ============ BYLINE ============ -->
-  <div class="meta-bar">
+  <div class="meta">
     <div class="meta-inner">
       <p>By <a href="[AUTHOR PAGE URL]">[Author name]</a>, betterhomes research. Published <time datetime="[YYYY-MM-DD]">[DD Month YYYY]</time>. Updated <time datetime="[YYYY-MM-DD]">[DD Month YYYY]</time>.</p>
       <div class="share">
@@ -625,118 +516,45 @@ select.field{appearance:none;background-image:url("data:image/svg+xml;charset=ut
     </div>
   </div>
 
-  <!-- ============ OPENING ============ -->
-  <section class="opening">
-    <div class="opening-top reveal">
-      <div class="series-note">
-        <p class="eyebrow">The series</p>
-        <a class="series-cover" href="#get-report" aria-label="Download the Future Living Report 2026">
-          <span class="cover" aria-hidden="true">
-            <span class="c-brand">betterhomes</span>
-            <span class="c-mid">
-              <span class="c-ed">Third edition &middot; No. 03</span>
-              <span class="c-title">Future Living<br>Report</span>
-              <span class="c-year">2026</span>
-            </span>
-            <span class="c-foot">Dubai resident survey<br>1,714 respondents &middot; 63 nationalities</span>
-          </span>
-          <span class="series-link">Download the PDF <span aria-hidden="true">&rarr;</span></span>
-        </a>
-        <p>The third edition of betterhomes&rsquo; annual survey of Dubai residents. First published in 2024.</p>
-      </div>
-      <div class="opening-text">
+  <!-- ============ ARTICLE + LEAD FORM ============ -->
+  <div class="main">
+    <article class="article">
+
+      <section>
         <p class="lead">Their view of short-term prices has cooled. Their commitment to Dubai hasn&rsquo;t.</p>
-        <p class="lead-stat"><b class="num" data-num="70" data-suffix="%">70%</b><span>more confident in Dubai despite regional uncertainty</span></p>
-        <p class="lead-sub">How do Dubai residents feel about the city, and about property, after a period of regional uncertainty? For the third year running, we asked them. 1,714 residents from 63 nationalities told us how they live, rent, buy and invest.</p>
-      </div>
-    </div>
+        <p class="standfirst">How do Dubai residents feel about the city, and about property, after a period of regional uncertainty? For the third year running, we asked them. 1,714 residents from 63 nationalities told us how they live, rent, buy and invest.</p>
+      </section>
 
-    <div class="takeaways reveal">
-      <article class="takeaway">
-        <p class="eyebrow">Confidence</p>
-        <h3>Confidence in Dubai held.</h3>
-        <p>A year of regional uncertainty tested how residents feel about the city. Most came through it surer of Dubai, not less.</p>
-      </article>
-      <article class="takeaway">
-        <p class="eyebrow">Commitment</p>
-        <h3>Commitment runs long.</h3>
-        <p>Residents are staying longer and owning more. The share who plan to stay a decade or more has climbed with every edition of this survey.</p>
-      </article>
-      <article class="takeaway">
-        <p class="eyebrow">Buying intent</p>
-        <h3>Buying plans didn&rsquo;t follow prices.</h3>
-        <p>Price expectations cooled sharply this year. Tenants&rsquo; plans to buy did not move with them.</p>
-      </article>
-    </div>
-  </section>
+      <section>
+        <h2>Key takeaways</h2>
+        <ul class="takeaways">
+          <li><strong>Confidence in Dubai held.</strong>67% say their confidence held or improved after recent regional developments, and for 45% it rose.</li>
+          <li><strong>Commitment runs long.</strong>69% plan to stay in Dubai for ten years or more, up from 59% in 2025, and homeownership has risen in every edition to 32%.</li>
+          <li><strong>Buying plans didn&rsquo;t follow prices.</strong>Fewer residents expect prices to rise, yet 55% of tenants still plan to buy within one to three years, the same as in 2025.</li>
+        </ul>
+      </section>
 
-  <!-- ============ AT A GLANCE ============ -->
-  <section class="band glance" id="glance">
-    <div class="band-head reveal">
-      <p class="eyebrow on-dark">2026 at a glance</p>
-      <h2>The year in six numbers</h2>
-      <p class="sub">Every figure below is what residents told us, measured against the same questions asked in 2024 and 2025.</p>
-    </div>
-    <dl class="glance-grid reveal">
-      <div class="cell">
-        <dt><span class="gnum num" data-num="67" data-suffix="%">67%</span></dt>
-        <dd><span class="gtext">say confidence in Dubai held or improved after recent regional developments</span><span class="delta flat">45% say it rose</span></dd>
-      </div>
-      <div class="cell">
-        <dt><span class="gnum num" data-num="69" data-suffix="%">69%</span></dt>
-        <dd><span class="gtext">plan to stay in Dubai for ten years or more</span><span class="delta up"><svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M6 2l4 5H2z" fill="currentColor"/></svg> Up from 59% in 2025</span></dd>
-      </div>
-      <div class="cell">
-        <dt><span class="gnum num" data-num="32" data-suffix="%">32%</span></dt>
-        <dd><span class="gtext">own their home</span><span class="delta up"><svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M6 2l4 5H2z" fill="currentColor"/></svg> Up from 23% in 2024</span></dd>
-      </div>
-      <div class="cell">
-        <dt><span class="gnum num" data-num="55" data-suffix="%">55%</span></dt>
-        <dd><span class="gtext">of tenants plan to buy within one to three years</span><span class="delta flat">Unchanged from 2025</span></dd>
-      </div>
-      <div class="cell">
-        <dt><span class="gnum num" data-num="32" data-suffix="%">32%</span></dt>
-        <dd><span class="gtext">expect sale prices to rise in the next 12 months</span><span class="delta down"><svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M6 10L2 5h8z" fill="currentColor"/></svg> Down from 72% in 2024</span></dd>
-      </div>
-      <div class="cell">
-        <dt><span class="gnum num" data-num="34" data-suffix="%">34%</span></dt>
-        <dd><span class="gtext">of tenants expect a rent increase at renewal</span><span class="delta down"><svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M6 10L2 5h8z" fill="currentColor"/></svg> Down from 77% in 2024</span></dd>
-      </div>
-    </dl>
-  </section>
+      <section id="glance">
+        <h2>2026 at a glance</h2>
+        <dl class="big-row">
+          <div class="big"><dt><b>67%</b></dt><dd><span>say confidence in Dubai held or improved after recent regional developments</span><span class="delta flat">45% say it rose</span></dd></div>
+          <div class="big"><dt><b>69%</b></dt><dd><span>plan to stay in Dubai for ten years or more</span><span class="delta up"><svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M6 2l4 5H2z" fill="currentColor"/></svg> Up from 59% in 2025</span></dd></div>
+          <div class="big"><dt><b>32%</b></dt><dd><span>own their home</span><span class="delta up"><svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M6 2l4 5H2z" fill="currentColor"/></svg> Up from 23% in 2024</span></dd></div>
+          <div class="big"><dt><b>55%</b></dt><dd><span>of tenants plan to buy within one to three years</span><span class="delta flat">Unchanged from 2025</span></dd></div>
+          <div class="big"><dt><b>32%</b></dt><dd><span>expect sale prices to rise in the next 12 months</span><span class="delta down"><svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M6 10L2 5h8z" fill="currentColor"/></svg> Down from 72% in 2024</span></dd></div>
+          <div class="big"><dt><b>34%</b></dt><dd><span>of tenants expect a rent increase at renewal</span><span class="delta down"><svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M6 10L2 5h8z" fill="currentColor"/></svg> Down from 77% in 2024</span></dd></div>
+        </dl>
+      </section>
 
-  <!-- ============ CHAPTER NAV ============ -->
-  <nav class="chapter-nav" aria-label="Report sections">
-    <ul>
-      <li><a href="#confidence">01 &nbsp;Confidence</a></li>
-      <li><a href="#staying">02 &nbsp;Putting down roots</a></li>
-      <li><a href="#global">03 &nbsp;Global standing</a></li>
-      <li><a href="#policy">04 &nbsp;Policy</a></li>
-      <li><a href="#more">More findings</a></li>
-      <li><a href="#faq">FAQ</a></li>
-      <li><a href="#method">Methodology</a></li>
-    </ul>
-    <a class="nav-cta" href="#get-report">Download</a>
-  </nav>
-
-  <!-- ============ FINDINGS ============ -->
-  <div class="findings">
-
-    <!-- Chapter 01 -->
-    <section class="chapter" id="confidence">
-      <div class="chapter-mark">
-        <span class="num">01</span>
-        <span class="label">Confidence</span>
-      </div>
-      <div class="chapter-body">
-        <h2 class="reveal">Confidence in Dubai held when it was tested</h2>
-        <p class="standfirst reveal">This is the first Future Living survey since a period of regional disruption. For 45% of residents, confidence in Dubai did not merely hold, it rose. Property plans moved more carefully than sentiment did.</p>
-        <figure class="fig reveal">
+      <section id="confidence">
+        <h2>Confidence in Dubai held when it was tested</h2>
+        <p class="standfirst">This is the first Future Living survey since a period of regional disruption. For 45% of residents, confidence in Dubai did not merely hold, it rose. Property plans moved more carefully than sentiment did.</p>
+        <figure class="fig">
           <p class="chart-title">How recent regional developments affected property plans</p>
           <div class="stack" aria-hidden="true">
-            <div style="--w:31%;background:var(--navy)">31%</div>
-            <div style="--w:36%;background:#8FA3AD;color:var(--navy-deep)">36%</div>
-            <div style="--w:33%;background:#E0665E;color:var(--navy-deep)">33%</div>
+            <div style="flex:31;background:var(--navy)">31%</div>
+            <div style="flex:36;background:#8FA3AD;color:var(--navy-deep)">36%</div>
+            <div style="flex:33;background:#E0665E;color:var(--navy-deep)">33%</div>
           </div>
           <div class="stack-legend cols-3">
             <span><span class="sw" style="background:var(--navy)"></span>31% became more committed or accelerated plans</span>
@@ -745,21 +563,14 @@ select.field{appearance:none;background-image:url("data:image/svg+xml;charset=ut
           </div>
           <figcaption>Base: 1,714 respondents. The questionnaire did not name specific events, countries or parties.</figcaption>
         </figure>
-        <p class="insight reveal"><strong>What it means</strong>Most residents still believe in Dubai. Some are just taking a little longer to decide when to buy or move.</p>
-        <a class="story-cta reveal" href="#get-report">Read the full chapter in the report <span aria-hidden="true">&rarr;</span></a>
-      </div>
-    </section>
+        <p class="insight"><strong>What it means</strong>Most residents still believe in Dubai. Some are just taking a little longer to decide when to buy or move.</p>
+        <a class="story-cta" href="#get-report">Download the full report <span aria-hidden="true">&rarr;</span></a>
+      </section>
 
-    <!-- Chapter 02 -->
-    <section class="chapter" id="staying">
-      <div class="chapter-mark">
-        <span class="num">02</span>
-        <span class="label">Putting down roots</span>
-      </div>
-      <div class="chapter-body">
-        <h2 class="reveal">More residents are putting down roots</h2>
-        <p class="standfirst reveal">Homeownership has risen in every edition of this survey, and the residents who have been here longest are the ones most likely to stay.</p>
-        <figure class="fig reveal">
+      <section id="staying">
+        <h2>More residents are putting down roots</h2>
+        <p class="standfirst">Homeownership has risen in every edition of this survey, and the residents who have been here longest are the ones most likely to stay.</p>
+        <figure class="fig">
           <p class="chart-title">Homeownership by edition</p>
           <div class="bars" aria-hidden="true">
             <div class="bar" style="--v:23"><b>23%</b><i></i></div>
@@ -769,25 +580,18 @@ select.field{appearance:none;background-image:url("data:image/svg+xml;charset=ut
           <div class="bar-labels" aria-hidden="true"><span>2024</span><span>2025</span><span class="now">2026</span></div>
           <figcaption>Share of respondents who own their home. 51% of owners have a mortgage. The 2026 sample includes more long-standing residents.</figcaption>
         </figure>
-        <p class="insight reveal"><strong>What it means</strong>The longer people live here, the more likely they are to stay. 75% of residents who&rsquo;ve been here more than ten years plan to stay another decade.</p>
-        <a class="story-cta reveal" href="#get-report">Read the full chapter in the report <span aria-hidden="true">&rarr;</span></a>
-      </div>
-    </section>
+        <p class="insight"><strong>What it means</strong>The longer people live here, the more likely they are to stay. 75% of residents who&rsquo;ve been here more than ten years plan to stay another decade.</p>
+        <a class="story-cta" href="#get-report">Download the full report <span aria-hidden="true">&rarr;</span></a>
+      </section>
 
-    <!-- Chapter 03 -->
-    <section class="chapter" id="global">
-      <div class="chapter-mark">
-        <span class="num">03</span>
-        <span class="label">Global standing</span>
-      </div>
-      <div class="chapter-body">
-        <h2 class="reveal">Where does Dubai stand among the world&rsquo;s property markets?</h2>
-        <p class="standfirst reveal">Most residents already place Dubai among the world&rsquo;s leading property markets, or expect it to get there within five years. 70% are confident in the city&rsquo;s long-term prospects.</p>
-        <figure class="fig reveal">
+      <section id="global">
+        <h2>Where does Dubai stand among the world&rsquo;s property markets?</h2>
+        <p class="standfirst">Most residents already place Dubai among the world&rsquo;s leading property markets, or expect it to get there within five years. 70% are confident in the city&rsquo;s long-term prospects.</p>
+        <figure class="fig">
           <p class="chart-title">How residents see Dubai against the world&rsquo;s leading property markets</p>
           <div class="stack" aria-hidden="true">
-            <div style="--w:62%;background:var(--navy)">62%</div>
-            <div style="--w:38%;background:#E3E1DD;color:var(--navy-deep)">38%</div>
+            <div style="flex:62;background:var(--navy)">62%</div>
+            <div style="flex:38;background:#E3E1DD;color:var(--navy-deep)">38%</div>
           </div>
           <div class="stack-legend">
             <span><span class="sw" style="background:var(--navy)"></span>62% believe Dubai already rivals them, or will within five years</span>
@@ -795,27 +599,20 @@ select.field{appearance:none;background-image:url("data:image/svg+xml;charset=ut
           </div>
           <figcaption>Base: 1,714 respondents.</figcaption>
         </figure>
-        <p class="insight reveal"><strong>What it means</strong>Most residents see Dubai as a world-class property market, or one well on its way. We&rsquo;ve watched it grow since 1986.</p>
-        <a class="story-cta reveal" href="#get-report">Read the full chapter in the report <span aria-hidden="true">&rarr;</span></a>
-      </div>
-    </section>
+        <p class="insight"><strong>What it means</strong>Most residents see Dubai as a world-class property market, or one well on its way. We&rsquo;ve watched it grow since 1986.</p>
+        <a class="story-cta" href="#get-report">Download the full report <span aria-hidden="true">&rarr;</span></a>
+      </section>
 
-    <!-- Chapter 04 -->
-    <section class="chapter" id="policy">
-      <div class="chapter-mark">
-        <span class="num">04</span>
-        <span class="label">Policy</span>
-      </div>
-      <div class="chapter-body">
-        <h2 class="reveal">How government policy is shaping property decisions</h2>
-        <p class="standfirst reveal">70% of respondents say government policies or initiatives influenced their property decisions. For most of them it tipped a decision they were already weighing.</p>
-        <figure class="fig reveal">
+      <section id="policy">
+        <h2>How government policy is shaping property decisions</h2>
+        <p class="standfirst">70% of respondents say government policies or initiatives influenced their property decisions. For most of them it tipped a decision they were already weighing.</p>
+        <figure class="fig">
           <p class="chart-title">How much policy influenced the decision to invest</p>
           <div class="stack" aria-hidden="true">
-            <div style="--w:33%;background:var(--navy)">33%</div>
-            <div style="--w:37%;background:#8FA3AD;color:var(--navy-deep)">37%</div>
-            <div style="--w:25%;background:#E3E1DD;color:var(--navy-deep)">25%</div>
-            <div style="--w:5%;background:#E0665E;color:var(--navy-deep)"></div>
+            <div style="flex:33;background:var(--navy)">33%</div>
+            <div style="flex:37;background:#8FA3AD;color:var(--navy-deep)">37%</div>
+            <div style="flex:25;background:#E3E1DD;color:var(--navy-deep)">25%</div>
+            <div style="flex:5;background:#E0665E;color:var(--navy-deep)"></div>
           </div>
           <div class="stack-legend">
             <span><span class="sw" style="background:var(--navy)"></span>33% a primary reason</span>
@@ -825,131 +622,97 @@ select.field{appearance:none;background-image:url("data:image/svg+xml;charset=ut
           </div>
           <figcaption>Base: 1,714 respondents.</figcaption>
         </figure>
-        <p class="insight reveal"><strong>What it means</strong>Government support is shaping how people buy. If you&rsquo;re buying your first home, the Dubai Land Department&rsquo;s First-Time Home Buyer Programme is worth a look.</p>
-        <a class="story-cta reveal" href="#get-report">Read the full chapter in the report <span aria-hidden="true">&rarr;</span></a>
+        <p class="insight"><strong>What it means</strong>Government support is shaping how people buy. If you&rsquo;re buying your first home, the Dubai Land Department&rsquo;s First-Time Home Buyer Programme is worth a look.</p>
+        <a class="story-cta" href="#get-report">Download the full report <span aria-hidden="true">&rarr;</span></a>
+      </section>
+
+      <section id="more">
+        <h2>More from the survey</h2>
+        <div class="more">
+          <div class="more-card"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 21V10l8-6 8 6v11"/><path d="M9 21v-6h6v6"/></svg><b>30%</b><span>of tenants planning to buy now want a townhouse, up from 17% in 2024, as apartment preference falls</span></div>
+          <div class="more-card"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="4" y="6" width="16" height="12" rx="3"/><path d="M9 11v.01M15 11v.01M9 15h6M12 3v3"/></svg><b>52%</b><span>of residents who have used an AI or digital tool in a property search still cross-check it with a human expert</span></div>
+          <div class="more-card"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 21V10l8-6 8 6v11"/><path d="M9 21v-6h6v6"/></svg><b>76%</b><span>are satisfied with their current home</span></div>
+          <div class="more-card"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 3v18M16.5 7.5c0-1.7-2-3-4.5-3s-4.5 1.3-4.5 3 2 2.6 4.5 3 4.5 1.3 4.5 3-2 3-4.5 3-4.5-1.3-4.5-3"/></svg><b>61%</b><span>of residents who have seriously considered relocating still plan to stay ten years or more</span></div>
+          <div class="more-card"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 21V11"/><path d="M12 11c0-4 3-7 7-7 0 4-3 7-7 7zM12 14c0-3-2.5-5.5-6-5.5 0 3 2.5 5.5 6 5.5z"/></svg><b>77%</b><span>of owners want more green space and walkable areas in new developments, compared with 35% for smart-home technology</span></div>
+          <div class="more-card"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg><b>53%</b><span>would consider living in one emirate and working in another once Etihad Rail passenger services begin</span></div>
+          <div class="more-card"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 21V10l8-6 8 6v11"/><path d="M9 21v-6h6v6"/></svg><b>41%</b><span>of owners prefer a ready home for their next purchase, up from 35% in 2025</span></div>
+          <div class="more-card"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 20V4M4 20h16"/><path d="M8 16l4-5 3 3 5-6"/></svg><b>79%</b><span>of owners rate their rental yields satisfactory or robust</span></div>
+        </div>
+      </section>
+
+      <section id="film">
+        <h2>Watch: Future Living Report 2026 in brief</h2>
+        <div class="video" id="report-video" data-youtube-id="[YOUTUBE VIDEO ID]">
+          <button type="button" class="video-play" aria-label="Play video: Future Living Report 2026 in brief">
+            <svg width="76" height="76" viewBox="0 0 76 76" aria-hidden="true"><circle cx="38" cy="38" r="38" fill="#fff"/><path d="M31 25l21 13-21 13z" fill="#1F343F"/></svg>
+          </button>
+          <span class="video-length">[m:ss]</span>
+        </div>
+        <p class="standfirst">The key findings from 1,714 Dubai residents, in [X] minutes. <a href="[VIDEO TRANSCRIPT URL]">Read the transcript</a></p>
+      </section>
+
+      <section id="method">
+        <h2>About the survey</h2>
+        <dl class="method">
+          <dt>Respondents</dt><dd>1,714 Dubai residents from 63 nationalities</dd>
+          <dt>Fieldwork</dt><dd>17 June to 19 July 2026</dd>
+          <dt>Method</dt><dd>Voluntary online survey through betterhomes&rsquo; channels</dd>
+          <dt>Reporting</dt><dd>Percentages are rounded and reflect residents&rsquo; views</dd>
+          <dt>Published by</dt><dd>betterhomes, third edition</dd>
+        </dl>
+        <p class="method-note">Figures describe what this sample of residents told us. They are not a forecast of the Dubai property market, and comparisons with 2024 and 2025 use the same questions asked of different samples each year.</p>
+      </section>
+    </article>
+
+    <aside class="form-card" id="get-report" aria-labelledby="form-title">
+      <div id="form-view">
+        <form id="report-form" novalidate>
+          <h2 id="form-title">Download the full Future Living Report 2026</h2>
+          <p class="form-sub">Fill in the form and the PDF downloads straight away. We&rsquo;ll email you a copy too.</p>
+          <input type="hidden" name="report_year" id="report-year" value="2026">
+          <fieldset class="years">
+            <legend>Choose an edition</legend>
+            <button type="button" class="year" data-year="2026" aria-pressed="true">2026</button>
+            <button type="button" class="year" data-year="2025" aria-pressed="false">2025</button>
+            <button type="button" class="year" data-year="2024" aria-pressed="false">2024</button>
+          </fieldset>
+          <input class="field" type="text" id="lead-name" name="name" autocomplete="name" aria-label="Name" placeholder="Name" required>
+          <input class="field" type="email" id="lead-email" name="email" autocomplete="email" aria-label="Email address" placeholder="Email Address" required>
+          <div class="phone">
+            <span class="code"><svg width="26" height="14" viewBox="0 0 26 14" aria-hidden="true"><rect width="7" height="14" fill="#EF3340"/><rect x="7" width="19" height="4.67" fill="#00843D"/><rect x="7" y="4.67" width="19" height="4.67" fill="#fff"/><rect x="7" y="9.33" width="19" height="4.67" fill="#000"/></svg>+971</span>
+            <input type="tel" id="lead-phone" name="phone" autocomplete="tel-national" aria-label="Contact number" placeholder="Your Contact Number" required>
+          </div>
+          <select class="field" id="lead-persona" name="persona" aria-label="I am a" required>
+            <option value="">I am a...</option>
+            <option>Tenant</option>
+            <option>Homeowner</option>
+            <option>Landlord</option>
+            <option>Investor</option>
+          </select>
+          <label class="consent"><input type="checkbox" id="lead-consent" name="marketing_consent"><span>Send me betterhomes market reports. <a href="https://www.bhomes.com/en/privacy">Privacy policy</a></span></label>
+          <p class="form-error" id="form-error" role="alert" hidden>Please add your name, email, number and tell us who you are.</p>
+          <button type="submit" class="btn-submit" id="submit-btn">Download the report</button>
+          <p class="form-foot">Free. One email, and the PDF is yours to keep.</p>
+        </form>
       </div>
-    </section>
+      <div class="success" id="success-view" hidden>
+        <h2 id="success-title" tabindex="-1">Your report is on its way.</h2>
+        <p>It&rsquo;s downloading now, and we&rsquo;ve emailed you a copy too.</p>
+        <a class="btn-submit" id="download-again" href="#">Download again</a>
+        <a class="text-link" href="https://www.bhomes.com/en/contact">Speak to an advisor</a>
+      </div>
+    </aside>
   </div>
-
-  <!-- ============ MORE FROM THE SURVEY ============ -->
-  <section class="band more-band" id="more">
-    <div class="band-head reveal">
-      <p class="eyebrow">More from the survey</p>
-      <h2>Nine more findings worth knowing</h2>
-      <p class="sub">On renting, buying, technology, global standing and what residents want from the homes being built next.</p>
-    </div>
-    <div class="more reveal">
-      <div class="more-card"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 21V10l8-6 8 6v11"/><path d="M9 21v-6h6v6"/></svg><b class="num" data-num="30" data-suffix="%">30%</b><span>of tenants planning to buy now want a townhouse, up from 17% in 2024, as apartment preference falls</span></div>
-      <div class="more-card"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="4" y="6" width="16" height="12" rx="3"/><path d="M9 11v.01M15 11v.01M9 15h6M12 3v3"/></svg><b class="num" data-num="52" data-suffix="%">52%</b><span>of residents who have used an AI or digital tool in a property search still cross-check it with a human expert</span></div>
-      <div class="more-card"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 21V10l8-6 8 6v11"/><path d="M9 21v-6h6v6"/></svg><b class="num" data-num="76" data-suffix="%">76%</b><span>are satisfied with their current home</span></div>
-      <div class="more-card"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 3v18M16.5 7.5c0-1.7-2-3-4.5-3s-4.5 1.3-4.5 3 2 2.6 4.5 3 4.5 1.3 4.5 3-2 3-4.5 3-4.5-1.3-4.5-3"/></svg><b class="num" data-num="61" data-suffix="%">61%</b><span>of residents who have seriously considered relocating still plan to stay ten years or more</span></div>
-      <div class="more-card"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 21V11"/><path d="M12 11c0-4 3-7 7-7 0 4-3 7-7 7zM12 14c0-3-2.5-5.5-6-5.5 0 3 2.5 5.5 6 5.5z"/></svg><b class="num" data-num="77" data-suffix="%">77%</b><span>of owners want more green space and walkable areas in new developments, compared with 35% for smart-home technology</span></div>
-      <div class="more-card"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg><b class="num" data-num="53" data-suffix="%">53%</b><span>would consider living in one emirate and working in another once Etihad Rail passenger services begin</span></div>
-      <div class="more-card"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 21V10l8-6 8 6v11"/><path d="M9 21v-6h6v6"/></svg><b class="num" data-num="41" data-suffix="%">41%</b><span>of owners prefer a ready home for their next purchase, up from 35% in 2025</span></div>
-      <div class="more-card"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 20V4M4 20h16"/><path d="M8 16l4-5 3 3 5-6"/></svg><b class="num" data-num="79" data-suffix="%">79%</b><span>of owners rate their rental yields satisfactory or robust</span></div>
-      <div class="more-card"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18M3.6 9h16.8M3.6 15h16.8"/></svg><b>[XX]%</b><span>of residents rate Dubai alongside or ahead of the global cities they compare it with &mdash; [add the global-cities figure from the report]</span></div>
-    </div>
-  </section>
-
-  <!-- ============ FILM ============ -->
-  <section class="band film" id="film">
-    <div class="film-inner">
-      <div class="film-copy reveal">
-        <p class="eyebrow on-dark">Watch</p>
-        <h2>Future Living Report 2026 in brief</h2>
-        <p>The key findings from 1,714 Dubai residents, in [X] minutes. <a href="[VIDEO TRANSCRIPT URL]">Read the transcript</a></p>
-      </div>
-      <div class="video reveal" id="report-video" data-youtube-id="[YOUTUBE VIDEO ID]">
-        <button type="button" class="video-play" aria-label="Play video: Future Living Report 2026 in brief">
-          <svg width="84" height="84" viewBox="0 0 76 76" aria-hidden="true"><circle cx="38" cy="38" r="38" fill="#fff"/><path d="M31 25l21 13-21 13z" fill="#1F343F"/></svg>
-        </button>
-        <span class="video-length">[m:ss]</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ THE REPORT (product + form) ============ -->
-  <section class="band product" id="get-report" aria-labelledby="form-title">
-    <div class="product-inner">
-      <div class="product-left reveal">
-        <div>
-          <p class="eyebrow on-dark">The report</p>
-          <h2>The full Future Living Report 2026</h2>
-        </div>
-        <div class="product-top">
-          <div class="cover" aria-hidden="true">
-            <p class="c-brand">betterhomes</p>
-            <div class="c-mid">
-              <p class="c-ed">Third edition &middot; No. 03</p>
-              <p class="c-title">Future Living<br>Report</p>
-              <p class="c-year">2026</p>
-            </div>
-            <p class="c-foot">Dubai resident survey<br>1,714 respondents &middot; 63 nationalities</p>
-          </div>
-          <div class="inside">
-            <p class="eyebrow on-dark">Inside the report</p>
-            <ul>
-              <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M4 12l5 5L20 6"/></svg>The four chapters in full: confidence, commitment, global standing and policy</li>
-              <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M4 12l5 5L20 6"/></svg>Sale price and rent expectations for the next 12 months</li>
-              <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M4 12l5 5L20 6"/></svg>Tenant purchase intent, property type and bedroom preferences</li>
-              <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M4 12l5 5L20 6"/></svg>What residents want from new developments, and how they use AI in a property search</li>
-              <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M4 12l5 5L20 6"/></svg>Full methodology and sample breakdown</li>
-            </ul>
-          </div>
-        </div>
-        <p class="product-terms"><span>Free</span><i>&mdash;</i><span>PDF</span><i>&mdash;</i><span>Instant download</span><i>&mdash;</i><span>2024, 2025 and 2026 editions</span></p>
-      </div>
-
-      <aside class="form-card">
-        <div id="form-view">
-          <form id="report-form" novalidate>
-            <h2 id="form-title">Download the report</h2>
-            <p class="form-sub">Fill in the form and the PDF downloads straight away. We&rsquo;ll email you a copy too.</p>
-            <input type="hidden" name="report_year" id="report-year" value="2026">
-            <fieldset class="years">
-              <legend>Choose an edition</legend>
-              <button type="button" class="year" data-year="2026" aria-pressed="true">2026</button>
-              <button type="button" class="year" data-year="2025" aria-pressed="false">2025</button>
-              <button type="button" class="year" data-year="2024" aria-pressed="false">2024</button>
-            </fieldset>
-            <input class="field" type="text" id="lead-name" name="name" autocomplete="name" aria-label="Name" placeholder="Name" required>
-            <input class="field" type="email" id="lead-email" name="email" autocomplete="email" aria-label="Email address" placeholder="Email Address" required>
-            <div class="phone">
-              <span class="code"><svg width="26" height="14" viewBox="0 0 26 14" aria-hidden="true"><rect width="7" height="14" fill="#EF3340"/><rect x="7" width="19" height="4.67" fill="#00843D"/><rect x="7" y="4.67" width="19" height="4.67" fill="#fff"/><rect x="7" y="9.33" width="19" height="4.67" fill="#000"/></svg>+971</span>
-              <input type="tel" id="lead-phone" name="phone" autocomplete="tel-national" aria-label="Contact number" placeholder="Your Contact Number" required>
-            </div>
-            <select class="field" id="lead-persona" name="persona" aria-label="I am a" required>
-              <option value="">I am a...</option>
-              <option>Tenant</option>
-              <option>Homeowner</option>
-              <option>Landlord</option>
-              <option>Investor</option>
-            </select>
-            <label class="consent"><input type="checkbox" id="lead-consent" name="marketing_consent"><span>Send me betterhomes market reports. <a href="https://www.bhomes.com/en/privacy">Privacy policy</a></span></label>
-            <p class="form-error" id="form-error" role="alert" hidden>Please add your name, email, number and tell us who you are.</p>
-            <button type="submit" class="btn-submit" id="submit-btn">Download the report</button>
-            <p class="form-foot">No charge. One email, and the PDF is yours to keep.</p>
-          </form>
-        </div>
-        <div class="success" id="success-view" hidden>
-          <h2 id="success-title" tabindex="-1">Your report is on its way.</h2>
-          <p>It&rsquo;s downloading now, and we&rsquo;ve emailed you a copy too.</p>
-          <a class="btn-submit" id="download-again" href="#">Download again</a>
-          <a class="text-link" href="https://www.bhomes.com/en/contact">Speak to an advisor</a>
-        </div>
-      </aside>
-    </div>
-  </section>
 
   <!-- ============ FAQ ============ -->
   <section class="band" id="faq">
     <div class="faq-grid">
-      <div class="band-head reveal" style="margin-bottom:0">
+      <div class="band-head" style="margin-bottom:0">
         <p class="eyebrow">Questions</p>
         <h2>Frequently asked questions</h2>
         <p class="sub">The answers below are what residents told us, not a market forecast.</p>
       </div>
-      <div class="faq-list reveal">
+      <div class="faq-list">
         <details open><summary>Are Dubai property prices expected to fall in 2026?</summary><p>Residents expect a calmer market. In our Future Living 2026 survey of 1,714 Dubai residents, 32% expect sale prices to rise in the next 12 months, down from 72% in 2024, while 53% expect a fall, including 27% who expect a drop of more than 10%. These are residents&rsquo; views, not a market forecast. 70% remain confident in Dubai&rsquo;s long-term prospects.</p></details>
         <details><summary>Will my rent go up when I renew in Dubai?</summary><p>Most tenants don&rsquo;t expect it to. 34% expect a rent increase at renewal, down from 77% in 2024, and 66% expect their rent to hold or fall. Any increase at renewal must still follow the RERA rental index.</p></details>
         <details><summary>Are tenants still planning to buy property in Dubai?</summary><p>Yes. 55% of tenants plan to buy within one to three years, the same as in 2025. 67% of them plan to use a mortgage, and long-term residence is the most common reason for buying, given by 71%.</p></details>
@@ -961,30 +724,9 @@ select.field{appearance:none;background-image:url("data:image/svg+xml;charset=ut
     </div>
   </section>
 
-  <!-- ============ METHODOLOGY ============ -->
-  <section class="band method-band" id="method">
-    <div class="method-grid">
-      <div class="band-head reveal" style="margin-bottom:0">
-        <p class="eyebrow">Methodology</p>
-        <h2>About the survey</h2>
-        <p class="sub">How the Future Living Report 2026 was put together.</p>
-      </div>
-      <div class="reveal">
-        <dl class="method">
-          <dt>Respondents</dt><dd>1,714 Dubai residents from 63 nationalities</dd>
-          <dt>Fieldwork</dt><dd>17 June to 19 July 2026</dd>
-          <dt>Method</dt><dd>Voluntary online survey through betterhomes&rsquo; channels</dd>
-          <dt>Reporting</dt><dd>Percentages are rounded and reflect residents&rsquo; views</dd>
-          <dt>Published by</dt><dd>betterhomes, third edition</dd>
-        </dl>
-        <p class="method-note">Figures describe what this sample of residents told us. They are not a forecast of the Dubai property market, and comparisons with 2024 and 2025 use the same questions asked of different samples each year.</p>
-      </div>
-    </div>
-  </section>
-
   <!-- ============ CLOSING RAILS ============ -->
   <section class="band index-band" id="more-reading">
-    <div class="index-head reveal">
+    <div class="index-head">
       <div class="band-head">
         <p class="eyebrow">Keep reading</p>
         <h2>More from this report</h2>
@@ -1092,74 +834,8 @@ select.field{appearance:none;background-image:url("data:image/svg+xml;charset=ut
 
 <script>
 (function () {
-  var root = document.documentElement;
-  var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var canAnimate = !reduced && 'IntersectionObserver' in window;
-  if (canAnimate) root.classList.add('js-reveal');
-
   // PDF links per edition: replace with real file URLs
   var PDFS = { "2026": "[2026 PDF URL]", "2025": "[2025 PDF URL]", "2024": "[2024 PDF URL]" };
-
-  /* ---------- Sticky header state + reading progress ---------- */
-  var bar = document.getElementById('progress-bar');
-  function onScroll() {
-    var y = window.scrollY || window.pageYOffset;
-    root.classList.toggle('is-scrolled', y > 120);
-    var h = document.body.scrollHeight - window.innerHeight;
-    if (bar) bar.style.width = (h > 0 ? Math.min(100, (y / h) * 100) : 0) + '%';
-  }
-  window.addEventListener('scroll', onScroll, { passive: true });
-  window.addEventListener('resize', onScroll);
-  onScroll();
-
-  /* ---------- Reveal on scroll + chart and counter animation ---------- */
-  function countUp(el) {
-    if (el.dataset.counted) return;
-    el.dataset.counted = '1';
-    var target = parseFloat(el.dataset.num);
-    if (isNaN(target)) return;
-    var suffix = el.dataset.suffix || '';
-    if (reduced) { el.textContent = target + suffix; return; }
-    var start = performance.now(), dur = 900;
-    (function tick(now) {
-      var p = Math.min(1, (now - start) / dur);
-      var eased = 1 - Math.pow(1 - p, 3);
-      el.textContent = Math.round(target * eased) + suffix;
-      if (p < 1) requestAnimationFrame(tick);
-    })(start);
-  }
-
-  if (canAnimate) {
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) {
-        if (!e.isIntersecting) return;
-        var el = e.target;
-        el.classList.add('in');
-        el.querySelectorAll('.stack, .bars').forEach(function (c) { c.classList.add('in'); });
-        el.querySelectorAll('.num').forEach(countUp);
-        io.unobserve(el);
-      });
-    }, { rootMargin: '0px 0px -12% 0px', threshold: 0.12 });
-    document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
-  } else {
-    document.querySelectorAll('.stack, .bars').forEach(function (c) { c.classList.add('in'); });
-  }
-
-  /* ---------- Chapter nav: scroll spy ---------- */
-  var navLinks = Array.prototype.slice.call(document.querySelectorAll('.chapter-nav ul a[href^="#"]'));
-  var targets = navLinks.map(function (a) { return document.querySelector(a.getAttribute('href')); });
-  function spy() {
-    var line = window.innerHeight * 0.32, best = -1;
-    targets.forEach(function (t, i) {
-      if (!t) return;
-      if (t.getBoundingClientRect().top <= line) best = i;
-    });
-    navLinks.forEach(function (a, i) { a.classList.toggle('active', i === best); });
-  }
-  if (targets.length) {
-    window.addEventListener('scroll', spy, { passive: true });
-    spy();
-  }
 
   /* ---------- Edition selector ---------- */
   var yearInput = document.getElementById('report-year');
@@ -1177,7 +853,7 @@ select.field{appearance:none;background-image:url("data:image/svg+xml;charset=ut
     a.addEventListener('click', function () { setYear(a.dataset.pickYear); });
   });
 
-  /* ---------- Lead form: validate, send, start download ---------- */
+  /* ---------- Lead form ---------- */
   var form = document.getElementById('report-form');
   form.addEventListener('submit', function (e) {
     e.preventDefault();
@@ -1192,7 +868,6 @@ select.field{appearance:none;background-image:url("data:image/svg+xml;charset=ut
     var y = data.report_year;
     var link = document.getElementById('download-again');
     link.href = PDFS[y]; link.setAttribute('download', '');
-
     document.getElementById('form-view').hidden = true;
     document.getElementById('success-view').hidden = false;
     document.getElementById('success-title').focus();
@@ -1219,7 +894,7 @@ select.field{appearance:none;background-image:url("data:image/svg+xml;charset=ut
     });
   });
 
-  /* ---------- Video: load YouTube only on click (keeps the page fast) ---------- */
+  /* ---------- Video: load YouTube only on click ---------- */
   var vid = document.getElementById('report-video');
   var heroImg = document.querySelector('.hero > img');
   if (vid && heroImg) vid.style.setProperty('--poster', 'url(' + heroImg.src + ')');
@@ -1232,7 +907,7 @@ select.field{appearance:none;background-image:url("data:image/svg+xml;charset=ut
     vid.innerHTML = ''; vid.appendChild(f);
   });
 
-  /* ---------- Closing rails: tabbed carousels ---------- */
+  /* ---------- Carousel ---------- */
   function initRail(panel) {
     var rail = panel.querySelector('.rail');
     var prev = panel.querySelector('[data-dir="-1"]');
@@ -1276,9 +951,9 @@ select.field{appearance:none;background-image:url("data:image/svg+xml;charset=ut
     panel.renderRail = render;
     render();
   }
-  var panels = Array.prototype.slice.call(document.querySelectorAll('.rail-panel'));
-  panels.forEach(initRail);
+  document.querySelectorAll('.rail-panel').forEach(initRail);
 
+  /* ---------- Carousel tabs ---------- */
   var tabs = Array.prototype.slice.call(document.querySelectorAll('.tab'));
   function selectTab(tab) {
     tabs.forEach(function (t) {
@@ -1295,11 +970,10 @@ select.field{appearance:none;background-image:url("data:image/svg+xml;charset=ut
     t.addEventListener('keydown', function (e) {
       if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
       e.preventDefault();
-      var next = tabs[(i + (e.key === 'ArrowRight' ? 1 : tabs.length - 1)) % tabs.length];
-      selectTab(next); next.focus();
+      var nxt = tabs[(i + (e.key === 'ArrowRight' ? 1 : tabs.length - 1)) % tabs.length];
+      selectTab(nxt); nxt.focus();
     });
   });
-
 })();
 </script>
 </body>
