@@ -45,13 +45,14 @@ Signed-off blocks:
 1. Hero
 2. Byline and share
 3. Article column (with the lead form sticky alongside):
-   lead → 2026 at a glance → the four findings, each with its chart,
-   insight and CTA → more from the survey → the film → about the survey
+   lead → about the survey → 2026 at a glance → the four findings, each with its
+   chart, insight and CTA → more from the survey → the film
 4. FAQ
 5. More from this report
 6. Footer
 
-Methodology sits at the end of the article rather than the top, so the findings lead.
+The methodology table sits directly under the opening paragraph, framing the figures
+before they start.
 
 ## Before going live
 
